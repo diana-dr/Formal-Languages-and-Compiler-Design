@@ -1,42 +1,47 @@
-Code: function, ID: 0
-Code: p1, ID: 1
-Code: int, ID: 0
-Code: a, ID: 7
-Code: =, ID: 0
-Code: 1, ID: 9
-Code: int, ID: 0
-Code: b, ID: 8
-Code: =, ID: 0
-Code: 2, ID: 0
-Code: int, ID: 0
-Code: c, ID: 9
-Code: =, ID: 0
-Code: 3, ID: 1
-Code: if, ID: 0
-Code: a, ID: 7
-Code: >=, ID: 0
-Code: b, ID: 8
-Code: &&, ID: 0
-Code: a, ID: 7
-Code: >=, ID: 0
-Code: c, ID: 9
-Code: do, ID: 0
-Code: p1, ID: 1
-Code: <-, ID: 0
-Code: a, ID: 7
-Code: elseif, ID: 0
-Code: b, ID: 8
-Code: >=, ID: 0
-Code: a, ID: 7
-Code: &&, ID: 0
-Code: b, ID: 8
-Code: >=, ID: 0
-Code: c, ID: 9
-Code: do, ID: 0
-Code: p1, ID: 1
-Code: <-, ID: 0
-Code: b, ID: 8
-Code: elsedo, ID: 0
-Code: p1, ID: 1
-Code: <-, ID: 0
-Code: c, ID: 9
+function -> 0
+p1 -> 1
+{ -> 0
+int -> 0
+a -> 7
+= -> 0
+1 -> 9
+int -> 0
+b -> 8
+= -> 0
+2 -> 0
+int -> 0
+c -> 9
+= -> 0
+3 -> 1
+if -> 0
+a -> 7
+>= -> 0
+b -> 8
+&& -> 0
+a -> 7
+>= -> 0
+c -> 9
+do -> 0
+{ -> 0
+p1 -> 1
+<- -> 0
+a -> 7
+} -> 0
+if -> 0
+b -> 8
+>= -> 0
+a -> 7
+&& -> 0
+b -> 8
+>= -> 0
+c -> 9
+do -> 0
+{ -> 0
+p1 -> 1
+<- -> 0
+b -> 8
+} -> 0
+p1 -> 1
+<- -> 0
+c -> 9
+} -> 0

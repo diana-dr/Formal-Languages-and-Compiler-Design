@@ -56,18 +56,21 @@ public class SymbolTable<Key, Value> {
         return null;
     }
 
-    public void add(Value val) {
+    public int add(Value val) {
         if (size >= 10* noOfChains) resize();
-        Integer key = hash(val);
+        int key = hash(val);
 
-        for (Node x = st[key]; x != null; x = x.next) {
-            if (val.equals(x.val)) {
-                x.val = val;
-                return;
-            }
+//        while (st[key] != null)
+//            key = (key+1) % noOfChains;
+
+        Node x = st[key];
+        if (x != null && val.equals(x.val)) {
+            x.val = val;
         }
         size++;
         st[key] = new Node(key, val, st[key]);
+
+        return key;
     }
 
     @Override
@@ -76,7 +79,7 @@ public class SymbolTable<Key, Value> {
 
         for (int i = 0; i < noOfChains; i++) {
             if (st[i] != null) {
-                str.append("position ").append(i).append('\n');
+//                str.append("position ").append(i).append('\n');
                 str.append(toStringST(st[i]) + '\n');
             }
         }
@@ -84,6 +87,6 @@ public class SymbolTable<Key, Value> {
     }
 
     public String toStringST(Node st) {
-        return "key: " + st.key + "; val: " + st.val;
+        return "position: " + st.key + "; val: " + st.val;
     }
 }

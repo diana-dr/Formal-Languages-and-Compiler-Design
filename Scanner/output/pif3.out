@@ -1,25 +1,25 @@
-Code: function, ID: 0
-Code: p3, ID: 3
-Code: int[]list, ID: 0
-Code: =, ID: 0
-Code: [123], ID: 4
-Code: int, ID: 0
-Code: max, ID: 6
-Code: =, ID: 0
-Code: list0, ID: 2
-Code: foreach, ID: 0
-Code: x, ID: 0
-Code: in, ID: 0
-Code: list, ID: 4
-Code: do, ID: 0
-Code: if, ID: 0
-Code: x, ID: 0
-Code: >, ID: 0
-Code: max, ID: 6
-Code: do, ID: 0
-Code: max, ID: 6
-Code: =, ID: 0
-Code: x, ID: 0
-Code: p3, ID: 3
-Code: <-, ID: 0
-Code: max, ID: 6
+function -> 0
+p3 -> 3
+int[]list -> 0
+= -> 0
+[123] -> 4
+int -> 0
+max -> 6
+= -> 0
+list0 -> 2
+foreach -> 0
+x -> 0
+in -> 0
+list -> 4
+do -> 0
+if -> 0
+x -> 0
+> -> 0
+max -> 6
+do -> 0
+max -> 6
+= -> 0
+x -> 0
+p3 -> 3
+<- -> 0
+max -> 6

@@ -1,11 +1,12 @@
-Code: function, ID: 0
-Code: p1err, ID: 0
-Code: char, ID: 0
-Code: a, ID: 7
-Code: =, ID: 0
-Code: int, ID: 0
-Code: b, ID: 8
-Code: =, ID: 0
-Code: p1err, ID: 0
-Code: <-, ID: 0
-Code: a, ID: 7
+function -> 0
+p1err -> 0
+char -> 0
+a -> 7
+= -> 0
+'#' -> 3
+int -> 0
+b -> 8
+= -> 0
+p1err -> 0
+<- -> 0
+a -> 7

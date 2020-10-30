@@ -17,14 +17,7 @@ public class MyScanner {
 
     public boolean isIdentifier(String token) {
 
-        String pattern = "[a-zA-Z]+([a-zA-Z]|[0-9])*";
-        return token.matches(pattern);
-    }
-
-    public boolean isConstant(String token) {
-
-        String pattern = "^(0|[+\\-]?[1-9][0-9]*)$|^'.'$|^\".*\"$|\\[[1-9]+[0-9]*, +[1-9]+[0-9]*]$|\\['[a-zA-Z]+',+ '[a-zA-Z]+'+]$" +
-                "|\\[[1-9]+[0-9]*]$|\\['[a-zA-Z]+']$";
+        String pattern = "[a-zA-Z]+([a-zA-Z]|[0-9])*(\\(.*\\):)?";
         return token.matches(pattern);
     }
 
@@ -42,6 +35,14 @@ public class MyScanner {
                 return true;
         }
         return false;
+    }
+
+    public boolean isConstant(String token) {
+
+        String pattern = "^(0|[+\\-]?[1-9][0-9]*)$|^'.'$|^\".*\"$|\\[[1-9]+[0-9]*, " +
+                "+[1-9]+[0-9]*]$|\\['[a-zA-Z]+',+ '[a-zA-Z]+'+]$" +
+                "|\\[[1-9]+[0-9]*]$|\\['[a-zA-Z]+']$";
+        return token.matches(pattern);
     }
 
     public boolean containsReservedWord(String string) {
@@ -140,6 +141,7 @@ public class MyScanner {
                     tokens.add(token);
                 Pair<String, Integer> pair = new Pair<>(line.get(index), index + 1);
                 token = pair.getToken();
+                index += 1;
                 tokens.add(token);
                 token = "";
             }

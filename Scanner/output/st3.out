@@ -1,10 +1,5 @@
-position 0
-key: 0; val: x
-position 2
-key: 2; val: list0
-position 3
-key: 3; val: p3
-position 4
-key: 4; val: list
-position 6
-key: 6; val: max
+position: 0; val: x
+position: 2; val: list0
+position: 3; val: p3
+position: 4; val: list
+position: 6; val: max

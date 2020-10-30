@@ -8,11 +8,9 @@ function p1():
         p1 <- a
     }
 
-    else if b >= a && b >= c do {
+    if b >= a && b >= c do {
         p1 <- b
     }
 
-    else do {
-        p1 <- c
-    }
+    p1 <- c
 }
