@@ -1,0 +1,12 @@
+SET OF STATES
+p,q,r
+ALPHABET
+a,b
+TRANSITIONS
+p,a,q
+p,a,r
+q,a,q
+q,b,r
+p,b,r
+FINAL STATES
+r

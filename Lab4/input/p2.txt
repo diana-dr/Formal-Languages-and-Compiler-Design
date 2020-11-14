@@ -1,0 +1,11 @@
+function p2():
+{
+    int[] list = [1, 2, 3, 4, 5]
+    int sum = 0
+
+    foreach x in list do {
+        sum += x
+    }
+
+    p2 <- sum
+}
