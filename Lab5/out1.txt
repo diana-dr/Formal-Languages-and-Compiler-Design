@@ -1,0 +1,13 @@
+Parser output:
+
+Values: [epsilon, S#1, a, S#2, a, S#3, c, b, S#3, c]
+epsilon
+ 	\-- S
+	 	|-- a
+	 	|-- S
+	 	| 	|-- a
+	 	| 	\-- S
+	 	|	 	\-- c
+	 	|-- b
+	 	\-- S
+		 	\-- c

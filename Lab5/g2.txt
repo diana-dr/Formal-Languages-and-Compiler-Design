@@ -1,25 +1,25 @@
-program,decllist,IDENTIFIER,declaration,type1,arraydecl,type,nr,cmpdstmt,stmtlist,stmt,simplstmt,assignstmt,operation,expression,term,factor,ostmt,structstmt,ifstmt,whilestmt,forstmt,condition,RELATION
-int,long,float,double,short,char,boolean,print,+,-,*,/,%,^,<,<=,!=,>=,>,==,=,;,[,],(,),{,},if,while,do,else,foreach,from,to
+program decllist IDENTIFIER declaration type1 arraydecl type nr cmpdstmt stmtlist stmt simplstmt assignstmt operation expression term factor ostmt structstmt ifstmt whilestmt forstmt condition RELATION
+int long float double short char boolean print + - * / % ^ < <= != >= > == = ; [ ] ( ) { } if while do else foreach from to
 program
-program -> cmpdstmt
-decllist -> declaration | declaration decllist
-declaration -> type IDENTIFIER 
-type1 -> int | long | float | double | short | char | boolean
-arraydecl -> type [ nr ]
-type -> type1|arraydecl
-cmpdstmt -> { stmtlist }
-stmtlist -> stmt | stmt ; stmtlist
-stmt -> simplstmt | structstmt
-simplstmt -> assignstmt | ostmt
-assignstmt -> IDENTIFIER = expression
-operation -> + | - | * | / | % | ^ 
-expression -> expression operation term | term
-term -> term operation factor | factor
-factor -> ( expression ) | IDENTIFIER
-ostmt -> print ( IDENTIFIER ) ;
-structstmt -> cmpdstmt | ifstmt | whilestmt
-ifstmt -> if condition do stmt [ else stmt ]
-whilestmt -> while condition do stmt 
-forstmt -> foreach IDENTIFIER from nr to nr do stmt 
-condition -> expression RELATION expression
-RELATION -> < | <= | != | >= | > | == 
+program->cmpdstmt
+decllist->declaration|declaration#decllist
+declaration->type#IDENTIFIER
+type1->int|long|float|double|short|char|boolean
+arraydecl->type[#nr#]
+type->#type1|arraydecl
+cmpdstmt->{#stmtlist#}
+stmtlist->stmt|stmt#;#stmtlist
+stmt->simplstmt|structstmt
+simplstmt->assignstmt|ostmt
+assignstmt->IDENTIFIER#=#expression
+operation->+|-|*|/|%|^
+expression->expression#operation#term|term
+term->term#operation#factor|factor
+factor->(#expression#)|IDENTIFIER
+ostmt->print#(#IDENTIFIER#)#;
+structstmt->cmpdstmt|ifstmt|whilestmt
+ifstmt->if#condition#do#stmt#[#else#stmt#]
+whilestmt->while#condition#do#stmt
+forstmt->foreach#IDENTIFIER#from#nr#to#nr#do#stmt
+condition->expression#RELATION#expression
+RELATION-><|<=|!=|>=|>|==
