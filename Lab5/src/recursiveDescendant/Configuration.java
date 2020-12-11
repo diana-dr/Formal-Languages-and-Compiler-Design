@@ -4,6 +4,12 @@ import java.util.Stack;
 
 public class Configuration {
 
+    // states
+    // q - normal state
+    // b - back state
+    // f - final state
+    // e - error state
+
     public String state;
     public int position;
     public Stack<String> workingStack;
@@ -18,7 +24,7 @@ public class Configuration {
 
     @Override
     public String toString() {
-        return "Config{" +
+        return "Configuration{" +
                 "state='" + state + '\'' +
                 ", pos=" + position +
                 ", working=" + workingStack +

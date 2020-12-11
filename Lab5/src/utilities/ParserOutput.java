@@ -1,13 +1,11 @@
-package utils;
-
-import utils.Grammar;
+package utilities;
 
 import java.util.*;
 
 public class ParserOutput {
 
     Grammar grammar;
-    Map<String, Integer> nrChildren;
+    Map<String, Integer> noOfChildren;
 
     List<String> values;
     List<Integer> father;
@@ -20,27 +18,29 @@ public class ParserOutput {
         father = new ArrayList<>();
         leftChild = new ArrayList<>();
         rightSibling = new ArrayList<>();
+        noOfChildren = new HashMap<>();
 
-        nrChildren = new HashMap<>();
-        for (String nonterminal : grammar.getNonTerminals()) {
-            List<List<String>> productions = grammar.productions.get(nonterminal);
+        for (String nonTerminal : grammar.getNonTerminals()) {
+            List<List<String>> productions = grammar.productions.get(nonTerminal);
             for (int i = 0; i < productions.size(); i++) {
-                nrChildren.put(nonterminal + "#" + (i + 1), productions.get(i).size());
+                noOfChildren.put(nonTerminal + "#" + (i + 1), productions.get(i).size());
             }
         }
+
         for (String terminal : grammar.getTerminals()) {
-            nrChildren.put(terminal, 0);
+            noOfChildren.put(terminal, 0);
         }
-        nrChildren.put("epsilon", 1);
+        noOfChildren.put("ε", 1);
     }
 
     public void addProductionString(List<String> productionString) {
         Stack<Integer> stack = new Stack<>();
         stack.push(-1);
+
         for (String p : productionString) {
             int father = stack.pop();
             int idx = add(p, father);
-            for (int i = 0; i < nrChildren.get(p); i++) {
+            for (int i = 0; i < noOfChildren.get(p); i++) {
                 stack.push(idx);
             }
         }
@@ -51,6 +51,7 @@ public class ParserOutput {
         int index = values.size() - 1;
         rightSibling.add(-1);
         leftChild.add(-1);
+
         if (parent == -1) {
             return index;
         }
@@ -76,12 +77,16 @@ public class ParserOutput {
         sb.append("Parser output:\n\n");
         sb.append("Values: ");
         sb.append(this.values).append("\n");
-//        sb.append("Father: ");
-//        sb.append(this.father).append("\n");
-//        sb.append("Left child: ");
-//        sb.append(this.leftChild).append("\n");
-//        sb.append("Right sibling: ");
-//        sb.append(this.rightSibling).append("\n\n");
+
+        sb.append("Father: ");
+        sb.append(this.father).append("\n");
+
+        sb.append("Left child: ");
+        sb.append(this.leftChild).append("\n");
+
+        sb.append("Right sibling: ");
+        sb.append(this.rightSibling).append("\n\n");
+
         if(this.values.size() == 0){
             return sb.toString();
         }
@@ -92,27 +97,36 @@ public class ParserOutput {
     private String subtree(int node) {
         StringBuilder sb = new StringBuilder();
         String value = values.get(node);
+
         if(value.contains("#")){
             value = value.split("#")[0];
         }
+
         sb.append(value).append("\n");
         List<String> subtrees = new ArrayList<>();
         int child = leftChild.get(node);
+
         while (child != -1) {
             String subtreeString = subtree(child);
-            String shiftedSubtree = Arrays.stream(subtreeString.split("\n")).map(l -> "\t" + l).reduce("", (s, t) -> s + t + "\n");
+            String shiftedSubtree = Arrays.stream(subtreeString.split("\n")).map(l -> "\t" + l)
+                    .reduce("", (s, t) -> s + t + "\n");
             String linkedSubtree = " -- " + shiftedSubtree.substring(1);
             subtrees.add(linkedSubtree);
+
             child = rightSibling.get(child);
         }
+
         List<String> B = new ArrayList<>();
+
         if (subtrees.size() > 0) {
             for (String a : subtrees.subList(0, subtrees.size() - 1)) {
-                String b = Arrays.stream(a.split("\n")).map(l -> " \t|" + l.substring(1)).reduce("", (s, t) -> s + t + "\n");
+                String b = Arrays.stream(a.split("\n")).map(l -> " \t|" + l.substring(1))
+                        .reduce("", (s, t) -> s + t + "\n");
                 B.add(b);
             }
             B.add(" \t\\" + subtrees.get(subtrees.size() - 1).substring(1));
         }
+
         B.forEach(sb::append);
         return sb.toString();
     }

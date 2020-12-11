@@ -1,4 +1,4 @@
-package utils;
+package utilities;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -40,7 +40,7 @@ public class Grammar {
             String[] parts = line.split("->");
             String[] productions = parts[1].split("\\|");
             for (String production : productions) {
-                String[] symbols = production.split("#");
+                String[] symbols = production.split(" ");
                 grammar.productions.get(parts[0]).add(Arrays.asList(symbols));
             }
 
