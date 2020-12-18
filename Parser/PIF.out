@@ -1,0 +1,12 @@
+function -> 0
+IDENTIFIER -> 1
+{ -> 0
+IDENTIFIER -> 1
+int -> 0
+IDENTIFIER -> 7
+= -> 0
+const -> 9
+IDENTIFIER -> 1
+<- -> 0
+IDENTIFIER -> 7
+{ -> 0

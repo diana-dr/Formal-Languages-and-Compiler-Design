@@ -1,5 +1,3 @@
-Parser output:
-
 Values: [ε, S#1, a, S#2, a, S#3, c, b, S#3, c]
 Father: [0, 1, 1, 3, 3, 5, 1, 1, 8]
 Left child: [1, 2, -1, 4, -1, 6, -1, -1, 9, -1]

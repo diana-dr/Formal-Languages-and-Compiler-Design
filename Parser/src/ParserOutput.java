@@ -1,12 +1,9 @@
-package utilities;
-
 import java.util.*;
 
 public class ParserOutput {
 
     Grammar grammar;
     Map<String, Integer> noOfChildren;
-
     List<String> values;
     List<Integer> father;
     List<Integer> leftChild;
@@ -14,14 +11,15 @@ public class ParserOutput {
 
     public ParserOutput(Grammar grammar) {
         this.grammar = grammar;
-        values = new ArrayList<>();
-        father = new ArrayList<>();
-        leftChild = new ArrayList<>();
-        rightSibling = new ArrayList<>();
-        noOfChildren = new HashMap<>();
+        this.values = new ArrayList<>();
+        this.father = new ArrayList<>();
+        this.leftChild = new ArrayList<>();
+        this.rightSibling = new ArrayList<>();
+        this.noOfChildren = new HashMap<>();
 
         for (String nonTerminal : grammar.getNonTerminals()) {
-            List<List<String>> productions = grammar.productions.get(nonTerminal);
+            List<List<String>> productions = grammar.getProductions().get(nonTerminal);
+
             for (int i = 0; i < productions.size(); i++) {
                 noOfChildren.put(nonTerminal + "#" + (i + 1), productions.get(i).size());
             }
@@ -37,60 +35,60 @@ public class ParserOutput {
         Stack<Integer> stack = new Stack<>();
         stack.push(-1);
 
-        for (String p : productionString) {
+        for (String production : productionString) {
             int father = stack.pop();
-            int idx = add(p, father);
-            for (int i = 0; i < noOfChildren.get(p); i++) {
-                stack.push(idx);
+            int index = add(production, father);
+
+            for (int i = 0; i < noOfChildren.get(production); i++) {
+                stack.push(index);
             }
         }
     }
 
     public int add(String node, int parent) {
         values.add(node);
-        int index = values.size() - 1;
         rightSibling.add(-1);
         leftChild.add(-1);
 
-        if (parent == -1) {
-            return index;
-        }
+        int index = values.size() - 1;
 
-        if (leftChild.get(parent) == -1) {
+        if (parent == -1)
+            return index;
+
+        if (leftChild.get(parent) == -1)
             leftChild.set(parent, index);
-        } else {
+        else {
             int current = leftChild.get(parent);
-            int prev = -1;
+            int previous = -1;
+
             while (current != -1) {
-                prev = current;
+                previous = current;
                 current = rightSibling.get(current);
             }
-            rightSibling.set(prev, index);
+            rightSibling.set(previous, index);
         }
         father.add(parent);
+
         return index;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Parser output:\n\n");
         sb.append("Values: ");
         sb.append(this.values).append("\n");
-
         sb.append("Father: ");
         sb.append(this.father).append("\n");
-
         sb.append("Left child: ");
         sb.append(this.leftChild).append("\n");
-
         sb.append("Right sibling: ");
         sb.append(this.rightSibling).append("\n\n");
 
-        if(this.values.size() == 0){
+        if(this.values.size() == 0)
             return sb.toString();
-        }
+
         sb.append(subtree(0));
+
         return sb.toString();
     }
 
@@ -98,12 +96,12 @@ public class ParserOutput {
         StringBuilder sb = new StringBuilder();
         String value = values.get(node);
 
-        if(value.contains("#")){
+        if(value.contains("#"))
             value = value.split("#")[0];
-        }
 
         sb.append(value).append("\n");
         List<String> subtrees = new ArrayList<>();
+
         int child = leftChild.get(node);
 
         while (child != -1) {
