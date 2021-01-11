@@ -1,0 +1,18 @@
+function
+{
+    int a = 1
+    int b = 2
+    int c = 3
+
+    if a >= b and a >= c do {
+        return a
+    }
+
+    else if b >= a and b >= c do {
+        return b
+    }
+
+    else do {
+        return c
+    }
+}

@@ -1,0 +1,48 @@
+Reserved word - function
+Separator - {
+Reserved word - int
+Identifier - a
+Operator - =
+Constant - 1
+Reserved word - int
+Identifier - b
+Operator - =
+Constant - 2
+Reserved word - int
+Identifier - c
+Operator - =
+Constant - 3
+Reserved word - if
+Identifier - a
+Operator - >=
+Identifier - b
+Reserved word - and
+Identifier - a
+Operator - >=
+Identifier - c
+Reserved word - do
+Separator - {
+Reserved word - return
+Identifier - a
+Separator - }
+Reserved word - else
+Reserved word - if
+Identifier - b
+Operator - >=
+Identifier - a
+Reserved word - and
+Identifier - b
+Operator - >=
+Identifier - c
+Reserved word - do
+Separator - {
+Reserved word - return
+Identifier - b
+Separator - }
+Reserved word - else
+Reserved word - do
+Separator - {
+Reserved word - return
+Identifier - c
+Separator - }
+Separator - }

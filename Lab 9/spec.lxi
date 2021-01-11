@@ -1,0 +1,78 @@
+%{ 	 
+#include <stdio.h>
+#include <string.h>
+#include "y.tab.h"
+
+int currentLine = 1;
+%} 
+
+%option noyywrap
+%option caseless
+
+DIGIT 		[0-9]
+NZ_DIGIT    [1-9]
+ZERO        [0]
+NUMBER      {NZ_DIGIT}{DIGIT}*
+SIGN        [+]|[-]
+INTEGER		{ZERO}|{NUMBER}|{SIGN}{NUMBER}
+SIGNER_INTEGER {SIGN}{NUMBER}
+SPECIAL_CHAR    "_"|"."|","|";"|":"|"?"|"!"|"@"|"/"|"("|")"|"-"|"+"|"="|"{"|"}"|"*"|"["|"]"|"$"|"%"|"^"|" "
+CHAR        {DIGIT}|{SPECIAL_CHAR}|[a-zA-Z]
+CHARACTER 	"'"{CHAR}"'"
+STRING		[\"]{CHAR}*[\"]
+CONSTANT		{STRING}|{INTEGER}|{CHARACTER}
+IDENTIFIER 		[a-zA-Z_][a-zA-Z0-9_]*
+
+%%
+and {return AND;}
+do {return DO;}
+or {return OR;}
+not {return NOT;}
+if {return IF;}
+else {return ELSE;}
+elif {return ELIF;}
+while {return WHILE;}
+for {return FOR;}
+read {return READ;}
+write {return WRITE;}
+int {return INTEGER;}
+string {return STRING;}
+char {return CHAR;}
+function {return FUNCTION;}
+bool {return BOOL;}
+return {return RETURN;}
+
+
+{CONSTANT} {return IDENTIFIER;}
+{IDENTIFIER} {return CONSTANT;}
+
+; {return SEMI_COLON;}
+"," {return COMMA;}
+\t {return DOT;}
+\{ {return OPEN_CURLY_BRACKET;}
+\} {return CLOSED_CURLY_BRACKET;}
+\[ {return OPEN_SQUARE_BRACKET;}
+\] {return CLOSED_SQUARE_BRACKET;}
+\( {return OPEN_ROUND_BRACKET;}
+\) {return CLOSED_ROUND_BRACKET;}
+
+\+ {return PLUS;}
+\- {return MINUS;}
+\* {return MUL;}
+\/ {return DIV;}
+\% { return PERCENT;}
+\< { return LT;}
+\> { return GT;}
+\<= { return LE;}
+\>= { return GE;}
+"=" { return ATRIB;}
+\== { return EQ;}
+\!= { return NOT_EQ;}
+
+[\n\r] {currentLine++;}
+[ \t\n]+ {}
+
+(\+0)|(\-0) printf("! Lexical error: %s\n", yytext);
+{INTEGER}{IDENTIFIER} printf("! Lexical error: %s\n", yytext);
+0{INTEGER} printf("! Lexical error: %s\n", yytext);
+%%
